@@ -7,4 +7,4 @@ RUN apt-get update && apt-get install -y python3-ipykernel
 
 EXPOSE 8000:8000
 
-CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8000", "--no-browser", "--allow-root", "--NotebookApp.token=''", "--NotebookApp.password=''"]
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8000", "--no-browser", "--allow-root", "--NotebookApp.token='util'"]
