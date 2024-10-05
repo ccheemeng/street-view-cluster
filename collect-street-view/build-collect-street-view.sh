@@ -1,1 +1,1 @@
-docker build -t collect-street-view ./collect-street-view
+docker build -t collect-street-view ./collect-street-view/Dockerfile

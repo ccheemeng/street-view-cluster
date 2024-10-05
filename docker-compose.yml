@@ -1,0 +1,20 @@
+name: street-view-cluster
+
+services:
+  util:
+    build:
+      context: ./util
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+
+  collect-street-view:
+    build:
+      context: ./collect-street-view
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./data:/app/data  

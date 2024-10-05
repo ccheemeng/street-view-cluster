@@ -5,6 +5,6 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 RUN apt-get update && apt-get install -y python3-ipykernel
 
-EXPOSE 8001
+EXPOSE 8000:8000
 
-CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8001", "--no-browser", "--allow-root", "--NotebookApp.token=''", "--NotebookApp.password=''"]
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8000", "--no-browser", "--allow-root", "--NotebookApp.token=''", "--NotebookApp.password=''"]
