@@ -1,0 +1,231 @@
+!-----------------------------------------------------------------------------
+! MATLAB app-defaults file
+! Copyright 1984-2000 The MathWorks, Inc.
+! $Revision: 1.23.2.1 $  $Date: 2004/04/25 21:30:47 $
+!-----------------------------------------------------------------------------
+! APP-DEFAULTS VERSION
+! Do not change the version number below.  If MATLAB gives a warning
+! concerning the version number, the correct app-defaults file must
+! be installed.  Merely changing the number below will not fix the
+! problem, it will only suppress the warning message.
+
+matlab.App-Defaults Version:	5.0
+
+!=============================================================================
+! The top of this file contains items that you might want to override. The rest
+! of the file contains items that should not be changed. You can override the 
+! defaults set in this file in your own personal ~/.Xdefaults file.
+! To override these in your ~/.Xdefaults file, you MUST prefix them with
+! the word "Matlab" if you do not wish these properties to change other
+! applications as well.  Thus:
+!   *BorderWidth: 0
+! becomes:
+!   Matlab*BorderWidth: 0
+
+! General appearance
+*BorderWidth:				0
+*shadowThickness:			1
+*XmSeparator.ShadowThickness:		2
+*XmSeparatorGadget.ShadowThickness:	2
+*XmFrame.ShadowThickness:		2
+*XmForm.ShadowThickness:		0
+*saveBack:				On
+*workWindow*resizePolicy:		RESIZE_NONE
+*XmPushButton*width:			60
+*XmPushButtonGadget*width:		60
+
+*select file*foreground:		black
+*select file*background:		gray70
+*select file.foreground:		black
+*select file.background:		gray70
+*select file*XmText.background:		white
+
+*select font*foreground:		black
+*select font*background:		gray70
+*select font.foreground:		black
+*select font.background:		gray70
+
+*modal dialog*foreground:		black
+*modal dialog*background:		gray70
+*modal dialog.foreground:		black
+*modal dialog.background:		gray70
+
+!
+! ...................FONT SPECIFICATIONS:
+!
+! .........................DEFAULT:
+*fontList:			-*-helvetica-medium-r-normal--12-*-*-*-*-*-*-*
+! ...................Figure window text font:
+figure*fontList:		-*-helvetica-medium-r-normal--12-*-*-*-*-*-*-*
+! ...................Figure window exponent text font
+figure*expfontList:		-*-helvetica-medium-r-normal--10-*-*-*-*-*-*-*
+
+! Scrolling:
+*XmScrollBar*marginWidth:			0
+*XmScrollBar*increment:				1
+*XmScrollBar*initialDelay:			250
+*XmScrollBar*repeatDelay:			50
+*XmScrollBar*showArrows:			True
+*XmScrollBar*sliderSize:			8
+*XmScrolledWindow*scrollBarDisplayPolicy:	STATIC
+*XmScrolledWindow*scrollBarPlacement:		BOTTOM_RIGHT
+*XmScrolledWindow*spacing:			0
+
+! External Editor Command
+*externalEditorCommand:	$EDITOR $FILE &
+
+! These are general translations to add some emacs like bindings to
+! text widgets in Matlab, and MS Windows like Cut and Paste.
+*XmText.Translations: #override \
+            <Key>osfDelete	:	delete-next-character()		\n\
+            <Key>osfBackSpace	:	delete-previous-character()	\n\
+ Meta       <Key>osfBackSpace	:	delete-previous-word()		\n\
+ Ctrl       <Key>E		:	end-of-line()			\n\
+ Ctrl  Shift<Key>E		:	end-of-line(extend)		\n\
+            <Key>osfEndData	:	end-of-line()			\n\
+ Shift      <Key>osfEndData	:	end-of-line(extend)		\n\
+ Ctrl       <Key>A		:	beginning-of-line()		\n\
+ Ctrl  Shift<Key>A		:	beginning-of-line(extend)	\n\
+            <Key>osfBeginData	:	beginning-of-line()		\n\
+ Shift      <Key>osfBeginData	:	beginning-of-line(extend)	\n\
+ Ctrl       <Key>D		:	delete-next-character()		\n\
+ Meta       <Key>D		:	delete-next-word()		\n\
+ Ctrl       <Key>K		:	delete-to-end-of-line()		\n\
+ Ctrl       <Key>Y		:	paste-clipboard()		\n\
+ Meta       <Key>F		:	forward-word()			\n\
+ Meta  Shift<Key>F		:	forward-word(extend)		\n\
+ Ctrl       <Key>F		:	forward-character()		\n\
+ Ctrl  Shift<Key>F		:	forward-character(extend)	\n\
+ Meta  Shift<Key>B		:	backward-word(extend)		\n\
+ Meta 	    <Key>B		:	backward-word()			\n\
+ Ctrl 	    <Key>B		:	backward-character()		\n\
+ Ctrl  Shift<Key>B		:	backward-character(extend)	\n\
+ Ctrl       <Key>W              :       cut-clipboard()                 \n\
+ Ctrl       <Key>X              :       cut-clipboard()                 \n\
+ Ctrl 	    <Key>V              :       paste-clipboard()               \n\
+ Ctrl 	    <Key>Y              :       paste-clipboard()               \n\
+ Ctrl 	    <Key>C              :       copy-clipboard()                \n\
+	    <Key>Tab 		:	next-tab-group()
+
+*XmTextField.Translations: #override \
+            <Key>osfDelete	:	delete-next-character()		\n\
+            <Key>osfBackSpace	:	delete-previous-character()	\n\
+ Meta       <Key>osfBackSpace	:	delete-previous-word()		\n\
+ Ctrl       <Key>E		:	end-of-line()			\n\
+ Ctrl  Shift<Key>E		:	end-of-line(extend)		\n\
+            <Key>osfEndData	:	end-of-line()			\n\
+ Shift      <Key>osfEndData	:	end-of-line(extend)		\n\
+ Ctrl       <Key>A		:	beginning-of-line()		\n\
+ Ctrl  Shift<Key>A		:	beginning-of-line(extend)	\n\
+            <Key>osfBeginData	:	beginning-of-line()		\n\
+ Shift      <Key>osfBeginData	:	beginning-of-line(extend)	\n\
+ Ctrl       <Key>D		:	delete-next-character()		\n\
+ Meta       <Key>D		:	delete-next-word()		\n\
+ Ctrl       <Key>K		:	delete-to-end-of-line()		\n\
+ Ctrl       <Key>Y		:	paste-clipboard()		\n\
+ Meta       <Key>F		:	forward-word()			\n\
+ Meta  Shift<Key>F		:	forward-word(extend)		\n\
+ Ctrl       <Key>F		:	forward-character()		\n\
+ Ctrl  Shift<Key>F		:	forward-character(extend)	\n\
+ Meta  Shift<Key>B		:	backward-word(extend)		\n\
+ Meta 	    <Key>B		:	backward-word()			\n\
+ Ctrl 	    <Key>B		:	backward-character()		\n\
+ Ctrl  Shift<Key>B		:	backward-character(extend)	\n\
+ Ctrl       <Key>W              :       cut-clipboard()                 \n\
+ Ctrl       <Key>X              :       cut-clipboard()                 \n\
+ Ctrl 	    <Key>V              :       paste-clipboard()               \n\
+ Ctrl 	    <Key>Y              :       paste-clipboard()               \n\
+ Ctrl 	    <Key>C              :       copy-clipboard()                \n\
+	    <Key>Tab 		:	next-tab-group()
+ 
+! XmTXT is the updated text widget, and as such needs it's own translations
+! for correct behavior.  Add in behavior not already existing in the current
+! implementation to make it also act like emacs.
+*XmTxt*Translations: #override \
+            <Key>osfDelete	:	delete-next-character()		\n\
+            <Key>osfBackSpace	:	delete-previous-character()	\n\
+ Meta       <Key>osfBackSpace	:	delete-previous-word()		\n\
+ Ctrl       <Key>E		:	end-of-line()			\n\
+ Ctrl  Shift<Key>E		:	end-of-line(extend)		\n\
+            <Key>osfEndData	:	end-of-line()			\n\
+ Shift      <Key>osfEndData	:	end-of-line(extend)		\n\
+ Ctrl       <Key>A		:	beginning-of-line()		\n\
+ Ctrl  Shift<Key>A		:	beginning-of-line(extend)	\n\
+            <Key>osfBeginData	:	beginning-of-line()		\n\
+ Shift      <Key>osfBeginData	:	beginning-of-line(extend)	\n\
+ Ctrl       <Key>D		:	delete-next-character()		\n\
+ Meta       <Key>D		:	delete-next-word()		\n\
+ Ctrl       <Key>K		:	delete-to-end-of-line()		\n\
+ Ctrl       <Key>Y		:	paste-clipboard()		\n\
+ Meta       <Key>F		:	forward-word()			\n\
+ Meta  Shift<Key>F		:	forward-word(extend)		\n\
+ Ctrl       <Key>F		:	forward-character()		\n\
+ Ctrl  Shift<Key>F		:	forward-character(extend)	\n\
+ Meta  Shift<Key>B		:	backward-word(extend)		\n\
+ Meta 	    <Key>B		:	backward-word()			\n\
+ Ctrl 	    <Key>B		:	backward-character()		\n\
+ Ctrl  Shift<Key>B		:	backward-character(extend)	\n\
+ Ctrl       <Key>W              :       cut-clipboard()                 \n\
+ Ctrl       <Key>X              :       cut-clipboard()                 \n\
+ Ctrl 	    <Key>V              :       paste-clipboard()               \n\
+ Ctrl 	    <Key>Y              :       paste-clipboard()               \n\
+ Ctrl 	    <Key>C              :       copy-clipboard()                \n\
+	    <Key>Tab 		:	next-tab-group()
+
+*XmTxtField*Translations: #override \
+            <Key>osfDelete	:	delete-next-character()		\n\
+            <Key>osfBackSpace	:	delete-previous-character()	\n\
+ Meta       <Key>osfBackSpace	:	delete-previous-word()		\n\
+ Ctrl       <Key>E		:	end-of-line()			\n\
+ Ctrl  Shift<Key>E		:	end-of-line(extend)		\n\
+            <Key>osfEndData	:	end-of-line()			\n\
+ Shift      <Key>osfEndData	:	end-of-line(extend)		\n\
+ Ctrl       <Key>A		:	beginning-of-line()		\n\
+ Ctrl  Shift<Key>A		:	beginning-of-line(extend)	\n\
+            <Key>osfBeginData	:	beginning-of-line()		\n\
+ Shift      <Key>osfBeginData	:	beginning-of-line(extend)	\n\
+ Ctrl       <Key>D		:	delete-next-character()		\n\
+ Meta       <Key>D		:	delete-next-word()		\n\
+ Ctrl       <Key>K		:	delete-to-end-of-line()		\n\
+ Ctrl       <Key>Y		:	paste-clipboard()		\n\
+ Meta       <Key>F		:	forward-word()			\n\
+ Meta  Shift<Key>F		:	forward-word(extend)		\n\
+ Ctrl       <Key>F		:	forward-character()		\n\
+ Ctrl  Shift<Key>F		:	forward-character(extend)	\n\
+ Meta  Shift<Key>B		:	backward-word(extend)		\n\
+ Meta 	    <Key>B		:	backward-word()			\n\
+ Ctrl 	    <Key>B		:	backward-character()		\n\
+ Ctrl  Shift<Key>B		:	backward-character(extend)	\n\
+ Ctrl       <Key>W              :       cut-clipboard()                 \n\
+ Ctrl       <Key>X              :       cut-clipboard()                 \n\
+ Ctrl 	    <Key>V              :       paste-clipboard()               \n\
+ Ctrl 	    <Key>Y              :       paste-clipboard()               \n\
+ Ctrl 	    <Key>C              :       copy-clipboard()                \n\
+	    <Key>Tab 		:	next-tab-group()
+
+*XmDrawnButton.Translations: #override \
+<Btn2Down>	:	Arm() \n\
+<Btn3Down>	:	Arm()
+
+! This fixes a Linux/Stateflow/edittext bug (Geck# 26452)
+*workWindow.XmTxt.traversalOn: false
+
+!=============================================================================
+! app-default entries from this point on in the file should NOT be changed or
+! overridden in your .Xdefaults file.
+
+! Label Strings -- could be changed for appropriate languages.
+*save file*cancelLabelString:				No
+*save file*helpLabelString:				Cancel
+*save file*okLabelString:				Yes
+*select file*applyLabelString:                          Filter
+*select file*cancelLabelString:                         Cancel
+*select file*okLabelString:                             Done
+*applyButton.labelString:				Apply
+*closeButton.labelString:				Close
+*helpButton.labelString:				Help
+*revertButton.labelString:				Revert
+*splashform*background: 				gray
+
+!Alerts & Dialogs:
+!*save file*font:				6x13bold

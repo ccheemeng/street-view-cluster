@@ -1,0 +1,22 @@
+MATLAB Benchmark Data.
+$Revision: 1.10.4.7.4.2 $
+$Date: 2005/08/08 15:03:20 $
+Get latest revision from:
+   http:/www.mathworks.com/matlabcentral/fileexchange/Files.jsp?field=1836
+                                LU      FFT     ODE    Sparse   2-D     3-D
+Macintosh G4, 1.25 GHz Dual     0.6256  0.9347  0.4480 1.1388   2.1687  1.1579
+  OS X 10.3.8, 2GB memory, using X-windows graphics, GeForce4 MX, MATLAB 7.1.0.183 (R14SP3)
+Macintosh G5, 2.0 GHz Dual      0.2926  0.4927  0.3039 0.4873   1.8034  0.9763
+  OS X 10.3.8, 1GB memory, using X-windows graphics, ATI Radeon, MATLAB 7.1.0.183 (R14SP3)
+Sun UltraSPARC-III 1.2 GHz Dual 0.6495  0.6324  0.6847 1.4580   1.3532  3.1783
+  Solaris 5.8, 2 GB memory, OpenGL 1.3, MATLAB 7.1.0.183 (R14SP3)
+Intel Pentium 4, 2.0 GHz        0.3850  0.8116  0.3301 0.7551   0.7072  0.6810
+  Windows 2000SP4, Matrox Millenium G550, 512 MB RAM, MATLAB 7.1.0.183 (R14SP3)
+HP-UX, 875MHz Dual              0.4555  1.7123  0.7610 1.2496   1.5423  2.8734
+  HP-UX 11.0, 4 GB memory, Mesa OpenGL, MATLAB 7.1.0.183 (R14SP3)
+AMD Athlon, 2.0 GHz Dual        0.5898  0.7984  0.3509 0.7776   1.3207  0.9591
+  Debian Linux 3.0, 2.4.18 kernel, Mesa OpenGL, 1 GB RAM, Athlon BLAS, MATLAB 7.1.0.183 (R14SP3)
+Intel Pentium 4, 3.0 GHz        0.2380  0.4555  0.2398 0.4806   0.6052  0.4303
+  Windows XPSP2, ATI Radeon 9600 SE AGP, 1 GB RAM, MATLAB 7.1.0.183 (R14SP3)
+AMD Opteron, 2.1 GHz Dual       0.2741  0.4028  0.1377 0.5027   0.3648  0.4479
+  SuSE Linux 9.0 (x86-64), 2 GB RAM, NVIDIA graphics card, MATLAB 7.1.0.183 (R14SP3)

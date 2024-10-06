@@ -1,0 +1,14 @@
+This version of the C++ library comes with gcc-3.2.3, available
+(among other places) from ftp.gnu.org.  It is included with MATLAB
+in case your distribution doesn't provide it.
+
+If you need the header files to go with it (particularly if you are
+building C++ mex files) please visit ftp://ftp.gnu.org/pub/gnu/gcc
+and download the 3.2.3 compiler sources.
+
+If you have a newer version of libstdc++ on your system already,
+typically in /usr/lib, you may be able to remove or rename this file
+and let MATLAB find the one on your own system.  If you have problems
+with this approach, however, we recommend using the same compiler
+that was used to compile MATLAB, gcc/g++ 3.2.3
+

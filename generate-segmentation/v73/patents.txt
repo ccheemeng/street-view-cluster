@@ -1,0 +1,12 @@
+Patents
+MathWorks products are covered by one or more patents. 
+
+MATLAB®, MATLAB® Compiler, and other MATLAB family products
+U.S. Patent No. 6,857,118
+
+Simulink®, Real-Time Workshop®, and other Simulink family products
+U.S. Patent Nos. 4,796,179; 5,133,045; 5,612,866; 6,868,526
+
+Other US and international patents pending.
+
+See www.mathworks.com/patents for the most recent list of patents.

@@ -1,0 +1,145 @@
+
+libXm.so.2.1 is based on OpenMotif 2.1.30 from www.motifzone.net.
+The following patches have been applied before building.  For the
+most up-to-date information on OpenMotif 2.1 and MATLAB, visit
+www.mathworks.com/support and search for "Open Motif".
+
+$Revision: 1.1.2.1 $ $Date: 2003/10/23 12:14:46 $
+
+#--------------------------------------------------------------------
+
+diff -rub motif.orig/lib/Xm/DropSMgr.c motif/lib/Xm/DropSMgr.c
+--- motif.orig/lib/Xm/DropSMgr.c	Wed May  3 05:12:39 2000
++++ motif/lib/Xm/DropSMgr.c	Sun Jun 11 18:58:48 2000
+@@ -518,6 +518,7 @@
+ 	dsm->dropManager.rootW = dsm->dropManager.rootH = ~0;
+ 	dsm->dropManager.clipperList = NULL;
+ 	dsm->dropManager.updateInfo = NULL;
++	dsm->dropManager.updateTimeOutId = 0;
+ 
+ 	/* Patch around broken Xt interfaces */
+ 	XtGetSubresources(nw, info, NULL, NULL, _XmDSResources,
+@@ -530,6 +531,9 @@
+ {
+ 	XmDropSiteManagerObject	dsm = (XmDropSiteManagerObject)w;
+ 
++	if (dsm->dropManager.updateTimeOutId)
++	    XtRemoveTimeOut(dsm->dropManager.updateTimeOutId);
++	
+ 	DSMDestroyTable(dsm);
+ 	_XmRegionDestroy(dsm->dropManager.curAncestorClipRegion);
+ 	_XmRegionDestroy(dsm->dropManager.newAncestorClipRegion);
+@@ -3908,6 +3912,7 @@
+ 
+   /* We don't add a timeout if the record is already marked for update */
+   if (clean) {
++    dsm -> dropManager.updateTimeOutId =
+     XtAppAddTimeOut(XtWidgetToApplicationContext(shell), 0,
+ 		    _XmIEndUpdate, dsm);
+   }
+@@ -3922,6 +3927,13 @@
+   Widget shell;
+   XmDSInfo shellInfo;
+ 
++  /* Remove timeout if this is a forced update */
++  if (dsm -> dropManager.updateTimeOutId) {
++    if (interval_id == NULL)
++      XtRemoveTimeOut(dsm -> dropManager.updateTimeOutId);
++    dsm -> dropManager.updateTimeOutId = 0;
++  }
++  
+   /* Return if all updates have already happened */
+   while(dsm -> dropManager.updateInfo != NULL) {
+     dsupdate = (_XmDropSiteUpdateInfo) dsm -> dropManager.updateInfo;
+diff -rub motif.orig/lib/Xm/DropSMgrP.h motif/lib/Xm/DropSMgrP.h
+--- motif.orig/lib/Xm/DropSMgrP.h	Wed May  3 05:12:39 2000
++++ motif/lib/Xm/DropSMgrP.h	Sun Jun 11 18:58:48 2000
+@@ -274,6 +274,7 @@
+     Dimension		rootW, rootH;
+     XtPointer		clipperList;
+     _XmDropSiteUpdateInfo	updateInfo;
++    XtIntervalId	updateTimeOutId;
+ } XmDropSiteManagerPart, *XmDropSiteManagerPartPtr;
+ 
+ /* Full instance record declaration */
+diff -rub motif.orig/lib/Xm/RCLayout.c motif/lib/Xm/RCLayout.c
+--- motif.orig/lib/Xm/RCLayout.c	Wed May  3 05:12:41 2000
++++ motif/lib/Xm/RCLayout.c	Sun Jun 11 18:59:31 2000
+@@ -1919,7 +1919,11 @@
+      _XmProcessUnlock();
+      (*resize) ((Widget) instigator); 
+    }
++   if (RC_Boxes(m)) 
++   {
+    XtFree ( (char *) RC_Boxes(m));
++     RC_Boxes(m) = 0;
++   }
+ }
+ 
+ 
+diff -rub motif.orig/lib/Xm/ScrolledW.c motif/lib/Xm/ScrolledW.c
+--- motif.orig/lib/Xm/ScrolledW.c	Wed May  3 05:12:42 2000
++++ motif/lib/Xm/ScrolledW.c	Sun Jun 11 19:00:50 2000
+@@ -1470,7 +1470,8 @@
+ DeleteChild(
+         Widget child )
+ {
+-    XmScrolledWindowWidget sw = (XmScrolledWindowWidget) XtParent(child);
++    Widget sf = (Widget) XtParent(child);
++    XmScrolledWindowWidget sw = (XmScrolledWindowWidget) sf;
+     XtWidgetProc      delete_child;
+     
+     if (child == sw->swindow.WorkWindow)
+@@ -1480,6 +1481,11 @@
+         sw->swindow.hScrollBar = NULL;
+     if (child == (Widget) sw->swindow.vScrollBar)
+         sw->swindow.vScrollBar = NULL;
++
++#if 1
++    /* Shouldn't we be cleaning up the Navigators added */
++    RemoveNavigator(sf,child);
++#endif
+ 
+     _XmProcessLock();
+     delete_child = 
+diff -rub motif.orig/lib/Xm/DragC.c motif/lib/Xm/DragC.c
+--- motif.orig/lib/Xm/DragC.c	Thu Oct 16 10:08:15 2003
++++ motif/lib/Xm/DragC.c	Thu Oct 16 05:45:58 2003
+@@ -662,6 +662,7 @@
+         Cardinal *numArgs )
+ {
+     XmDragContext	dc = (XmDragContext)new_w;
++    dc->drag.currWmRoot = 0;
+ 
+     dc->drag.roundOffTime = 50;
+ 
+@@ -961,6 +962,7 @@
+ 	 (currReceiverInfo->frame == currReceiverInfo->window))) {
+ 	Window		currRoot = dc->drag.currWmRoot;
+ 	int 		root_x, root_y;
++#if 0
+         Position	rel_x, rel_y;
+ 	/* 
+ 	 * set frame (win) to something reasonable
+@@ -978,6 +980,20 @@
+ 				     &win);
+ 	if (currReceiverInfo)
+ 	  currReceiverInfo->frame = win;
++#endif
++       Window		root_w, parent_w, new_parent_w, *children_w;
++       unsigned int	num_children;
++
++       new_parent_w = win;
++
++       do {
++           parent_w = new_parent_w;
++           XQueryTree(XtDisplayOfObject((Widget) dc), parent_w,
++		&root_w, &new_parent_w, &children_w, &num_children);
++           XFree((void *) children_w);
++       } while (new_parent_w && new_parent_w != currRoot);
++       if (currReceiverInfo)
++         currReceiverInfo->frame = parent_w;
+     }
+ 
+     if (currReceiverInfo == NULL) {
+

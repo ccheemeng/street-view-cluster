@@ -1,0 +1,113 @@
+%!FontType1-1.0: goth-28ku 0
+%%Creator: bzrto version 0.6
+%%CreationDate: Mon Jan  4 16:24:12 1999
+%%DocumentData: Clean7Bit
+%%EndComments
+% ttf2bpl output.
+% This font is in the public domain.
+/goth-28ku 11 dict begin
+/FontInfo 8 dict begin
+  /version (0) readonly def
+  /FullName (goth-28ku) readonly def
+  /FamilyName (Gothic) readonly def
+  /Weight (Medium) readonly def
+  /ItalicAngle 0 def
+  /isFixedPitch false def
+  /underlinePosition -100 def
+  /underlineThickness 50 def
+currentdict end readonly def
+/FontName 1 index def
+/PaintType 0 def
+/FontType 1 def
+/FontMatrix [0.001 0 0 0.001 0 0] readonly def
+/FontBBox {0 0 1000 1000} def
+/Private 9 dict begin
+  /MinFeature {16 16} def
+  /password 5839 def
+  /lenIV 0 def
+  /-| {string currentfile exch readhexstring pop} readonly def
+  /|- {readonly def} readonly def
+  /|  {readonly put} readonly def
+currentdict end def
+Private begin
+/Subrs 0 array 
+|- % Subrs
+/CharStrings 34 dict begin
+/exclam	26 -| 9b2e61a85072f05e0e1ffc4d5816004a501f71fc965b96a4966a |-
+/quotedbl	24 -| 9b2e61a8523c3cf8869de45a32218429bf70d398accf3229 |-
+/numbersign	30 -| 9b2e61a8523c3cf8869de624d8ae1f940a0107085cea4c90efc9015859f1 |-
+/dollar	30 -| 9b2e61a852d720c3f1464025c8fbbc2b6e1d4c7fcb50e3050138b5fb7bac |-
+/percent	32 -| 9b2e61a852d754b892fb2770bd0cc38e00dd76db3d7875d09d608eba7a124778 |-
+/ampersand	32 -| 9b2e61a852d754b892fb277056faf00f159873dc7e49a03b61b2047d1b5ea4ab |-
+/quoteright	35 -| 9b2e61a852d720c3f3abeae7a407d5399a7d07f1ae827f384c6c84997578e253552fd2 |-
+/parenleft	37 -| 9b2e61a8523c4a437393ef935cf593d10789aa50bd25dbe5d48125412788d2119d61283d50 |-
+/parenright	33 -| 9b2e61a852d3705aab94d21ddd7e67f44212dc3e896d66a1215677dd4d50a4a5ab |-
+/asterisk	33 -| 9b2e61a852d3705aab94d21ddd7e67f44210786568d091b5ca3f00daad573ee8ec |-
+/plus	46 -| 9b2e61a8523c3cf8869de6cfc60a8719503eadac22c474bc531893f5c34dff88862d1fb7a9ae8032d84cd56836ce |-
+/comma	24 -| 9b2e61a852ea044f109ca475960818cf98bd7356ecf4d515 |-
+/hyphen	26 -| 9b2e61a852654fef2fecb04fb75496d3da3ccd13bea1cc8d0bf9 |-
+/period	32 -| 9b2e61a852eeb418277104b3c59b29f33f6c314b71eb41d34a8b94ac164ac2ee |-
+/slash	30 -| 9b2e61a852618c38de1e15b8811d880a988ffbe5bed9c6f35c3145df07db |-
+/zero	30 -| 9b2e61a852618c3855998db9e7ee724787d0c2f90f0fb9cfbc72b25f535b |-
+/one	34 -| 9b2e61a852653ba50dea574a06b329293f149e279220eec5b468a6514f01a493fdd5 |-
+/two	40 -| 9b2e61a85072f06748ef131e59b0051c776c4ce14e29b2f5be70cc6f36bd248c127dc97c83d22a3b |-
+/three	36 -| 9b2e61a852618c3ac1ecfb43ea36745d88789f64ef66e9d3b8ee5a1a25926d31e9ad9e78 |-
+/four	38 -| 9b2e61a852eeb41827fa7c4c9e79d9f45ac16a258ead588ed91bcd81998842ef0b4ce54b1c64 |-
+/five	36 -| 9b2e61a852618c3855998db9e7ee7247875b6957f66f0bea3b3163ad27db1f95f5c64c1d |-
+/six	52 -| 9b2e61a85072f06748ef131e59b0051c776c4e7f7f427ea2b7e907271f338acb654cb6f171960958b4c6e35dd26ba9d8b1ae6887 |-
+/seven	37 -| 9b2e61a852eeb418256e649ca30f6a9551cdd6ab9159a47c4bdec81148bebe8e96b83cb537 |-
+/eight	35 -| 9b2e61a852618c3ac1ecfb43ea364dee262b6b1bc271045d7f2ed9f5b9c29d4ea2e7c4 |-
+/nine	35 -| 9b2e61a852d3705aab94eb42f734953bb7835c32958038e69085101297f9b05edca776 |-
+/colon	35 -| 9b2e61a852618c386c2dc67e7a30418c97d19c0355467c762e72bcbf689a7f0902e567 |-
+/semicolon	50 -| 9b2e61a85072f06748ef2aa208f211d073ac79112357d9b5e14501b41f68739d22a24c72c826acad99016db10c1e8734ee88 |-
+/less	36 -| 9b2e61a8523c3cf8869de45a3221842b2df57a48af23afb6ffc157d16fb22bceec2dfacf |-
+/equal	38 -| 9b2e61a852653948f307b1c20b573f66b031c212ff293b4269dce61358640185f2797072dbda |-
+/greater	36 -| 9b2e61a852d720c3f17f3a982832a20cb489fe0e3cb6acfd0ea5ba713f31144c1661cd7e |-
+/question	34 -| 9b2e61a852d3705aab94eb42f734953bb7835e973f7f31e8eee3c16be36d15e58a3b |-
+/at	48 -| 9b2e61a852eeb41827c325a04643f339c60a7c604a3fb9de7016774fd5fbc30299bf94bbb27412b7e5a0cbb8a568a10a |-
+/space	4 -| 9b5fad72 |-
+/.notdef	4 -| 9b5fad72 |-
+currentdict end readonly % CharStrings
+end % Private
+def % CharStrings
+/Encoding 256 array % ASCII
+  0 1 31 { 1 index exch /.notdef put } bind for
+  dup 32 /space put
+  dup 33 /exclam put
+  dup 34 /quotedbl put
+  dup 35 /numbersign put
+  dup 36 /dollar put
+  dup 37 /percent put
+  dup 38 /ampersand put
+  dup 39 /quoteright put
+  dup 40 /parenleft put
+  dup 41 /parenright put
+  dup 42 /asterisk put
+  dup 43 /plus put
+  dup 44 /comma put
+  dup 45 /hyphen put
+  dup 46 /period put
+  dup 47 /slash put
+  dup 48 /zero put
+  dup 49 /one put
+  dup 50 /two put
+  dup 51 /three put
+  dup 52 /four put
+  dup 53 /five put
+  dup 54 /six put
+  dup 55 /seven put
+  dup 56 /eight put
+  dup 57 /nine put
+  dup 58 /colon put
+  dup 59 /semicolon put
+  dup 60 /less put
+  dup 61 /equal put
+  dup 62 /greater put
+  dup 63 /question put
+  dup 64 /at put
+  65 1 255 { 1 index exch /.notdef put } bind for
+  readonly def
+Private begin
+  /BlueValues [] def
+currentdict end /Private exch readonly def
+currentdict end definefont pop

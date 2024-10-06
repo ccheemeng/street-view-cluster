@@ -1,0 +1,67 @@
+!-----------------------------------------------------------------------------
+! SIMULINK app-defaults file
+! Copyright 1990-2005 The MathWorks, Inc.
+! $Revision: 1.25.4.5 $
+!-----------------------------------------------------------------------------
+! APP-DEFAULTS VERSION
+! Do not change the version number below.  If SIMULINK gives a warning
+! concerning the version number, the correct app-defaults file must
+! be installed.  Merely changing the number below will not fix the
+! problem, it will only supress the warning message.
+
+simulink.App-Defaults Version:	6.3
+
+!=============================================================================
+! The top of this file contains items that you might want to override. The rest
+! of the file contains items that should not be changed. You can override the 
+! defaults set in this file in your own personal ~/.Xdefaults file.
+
+simulink.doubleClickTime:		500
+
+!	HERE ARE EXAMPLES OF FINER FONT CONTROL AVAILABE TO USERS.
+!       COPY THESE TO YOUR .XDEFAULTS FILE AND UN-COMMENT THEM.
+! ................Simulink window text font:
+!model*fontList:			6x13bold
+! ........................menus:
+!model*XmRowColumn*fontList:	-*-helvetica-medium-r-normal--10-*-*-*-*-*-*-*
+! ..................Simulink dialog boxes:
+!model*Parameters*fontList:	7x14
+
+! Looking for color examples?
+!
+! The standard Motif way of setting colors for Simulink model windows are
+! no longer effective as of Simulink 3.0.  Setting color resources can
+! cause some versions of Motif to seg fault Simulink.
+
+error*XmMessageBox.foreground:			red
+
+!=============================================================================
+! app-default entries from this point on in the file should NOT be changed or
+! overridden in your .Xdefaults file.
+
+!Alerts & Dialogs:
+!*error*fontList:				6x13bold
+
+!=============================================================================
+! Parameter Sheets:
+
+*Parameters*minWidth:				320
+*Parameters*minHeight:				320
+*Parameters.noResize:				False
+
+*Parameters*Help.recomputeSize:			False
+*Parameters*Information*alignment:		ALIGNMENT_BEGINNING
+*Parameters*ParamForm*rightOffset:		5
+*Parameters*ParamForm*bottomOffset:		10
+*Parameters*ParamForm*XmText*leftOffset:	22
+*Parameters*ParamForm*XmText*rightOffset:	10
+
+*Parameters*foreground:				black
+*Parameters*background:				gray70
+*Parameters*XmTxt.background:				white
+
+
+
+
+
+

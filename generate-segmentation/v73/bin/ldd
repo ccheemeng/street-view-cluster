@@ -1,0 +1,433 @@
+#! /bin/sh
+#
+#  Name:
+#
+#     ldd	show shared libraries used by a program.
+#     
+#  Usage:
+#
+#     ldd       [-h|-help] | -man | [-arch] [options]
+#					program [ . . . ]
+#
+#  Description:
+#
+#     This Bourne shell script calls the appropriate platform
+#     specific command to search a program for shared library
+#     information. You can also view the manual page for the
+#     command used.
+#
+#  Options:
+#
+#     -h | -help 	- Help. Print usage.
+#
+#     -man              - View manual page for command used.
+#
+#     -arch             - Assume local host has architecture arch.
+#
+#     options		- Platform specific options. See the
+#			  the manual page for details.
+#
+#     program		- Program to search.
+#
+#     [ . . . ]		- Additional programs to search.
+#
+# Note(s):	1. Commands with options to use:
+#
+#		   sol2:        /usr/bin/ldd
+#		   hpux:	/usr/bin/chatr
+#		   glnx86:	/usr/bin/ldd
+#		   glnxi64:	/usr/bin/ldd
+#                  mac:		/usr/bin/otool -L
+#		   
+# Copyright 1984-2003 The MathWorks, Inc.
+# All Rights Reserved.
+# $Revision: 1.8.4.3 $  $Date: 2004/04/25 21:30:53 $
+#-----------------------------------------------------------------------
+#23456789012345678901234567890123456789012345678901234567890123456789012
+#
+    trap "exit 1" 1 2 3 15
+# 
+# Do not use ARCH if it exists in the environment 
+#
+    ARCH="" 
+#
+#========================= archlist.sh (start) ============================ 
+#
+# usage:        archlist.sh
+#
+# abstract:     This Bourne Shell script creates the variable ARCH_LIST.
+#
+# note(s):      1. This file is always imbedded in another script
+#
+# Copyright 1997-2004 The MathWorks, Inc.
+# $Revision: 1.9.4.4 $  $Date: 2004/07/08 01:06:10 $
+#----------------------------------------------------------------------------
+#
+    ARCH_LIST='sol2 hpux glnx86 glnxi64 glnxa64 mac'
+#=======================================================================
+# Functions:
+#   check_archlist ()
+#=======================================================================
+    check_archlist () { # Sets ARCH. If first argument contains a valid
+			# arch then ARCH is set to that value else
+		        # an empty string. If there is a second argument
+			# do not output any warning message. The most
+			# common forms of the first argument are:
+			#
+			#     ARCH=arch
+			#     MATLAB_ARCH=arch
+			#     argument=-arch
+			#
+                        # Always returns a 0 status.
+                        #
+                        # usage: check_archlist arch=[-]value [noprint]
+                        #
+	if [ $# -gt 0 ]; then
+	    arch_in=`expr "$1" : '.*=\(.*\)'`
+	    if [ "$arch_in" != "" ]; then
+	        ARCH=`echo "$ARCH_LIST EOF $arch_in" | awk '
+#-----------------------------------------------------------------------
+	{ for (i = 1; i <= NF; i = i + 1)
+	      if ($i == "EOF")
+		  narch = i - 1
+	  for (i = 1; i <= narch; i = i + 1)
+		if ($i == $NF || "-" $i == $NF) {
+		    print $i
+		    exit
+		}
+	}'`
+#-----------------------------------------------------------------------
+	       if [ "$ARCH" = "" -a $# -eq 1 ]; then
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+echo ' '
+echo "    Warning: $1 does not specify a valid architecture - ignored . . ."
+echo ' '
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	       fi
+	    else
+		ARCH=""
+	    fi
+	else
+	    ARCH=""
+	fi
+#
+	return 0
+    }
+#=======================================================================
+#========================= archlist.sh (end) ============================== 
+#
+    stat="OK"
+    msg=""
+#
+# Verify input
+#
+    help=0
+    man=0
+    if [ $# -eq 0 ]; then
+	stat=""
+    fi
+    while [ "$stat" = "OK" -a  $# -gt 0 ]; do
+	case "$1" in
+	    -help)		# -help: Help option.
+		stat=""
+		help=1
+		;;
+	    -man)		# -man: Man pages.
+		man=1
+		stat=""
+		;;
+	    -*)
+#
+# -arch MUST be the first option on the line for the general
+#       case
+#
+		check_archlist argument=$1 noprint
+                if [ "$ARCH" != "" ]; then 
+		    shift
+                fi
+                break
+		;;
+	    *)
+		break
+		;;
+	esac
+	shift
+    done
+#
+# Command and Options
+#
+#========================= arch.sh (start) ============================
+#!/bin/sh
+#
+# usage:        arch.sh
+#
+# abstract:     This Bourne Shell script determines the architecture
+#		of the the current machine.
+#
+#		ARCH	  - Machine architecture
+#
+#		IMPORTANT: The shell function 'check_archlist' is used
+#			   by this routine and MUST be loaded first.
+#			   This can be done by sourcing the file,
+#
+#			       archlist.sh
+#
+#			   before using this routine.
+#
+# note(s):	1. This routine must be called using a . (period)
+#
+#		2. Also returns ARCH_MSG which may contain additional
+#		   information when ARCH returns 'unknown'.
+#
+# Copyright 1986-2004 The MathWorks, Inc.
+# $Revision: 1.17.4.5 $  $Date: 2004/07/08 01:06:09 $
+#----------------------------------------------------------------------------
+#
+#=======================================================================
+# Functions:
+#   realfilepath ()
+#   matlab6_arch ()
+#=======================================================================
+    realfilepath () { # Returns the actual path in the file system
+		      # of a file. It follows links. It returns an
+		      # empty path if an error occurs.
+		      #
+                      # Returns a 1 status if the file does not exist
+		      # or appears to be a circular link. Otherwise, 
+		      # a 0 status is returned. 
+                      #
+                      # usage: realfilepath filepath
+                      #
+	file=$1
+	n=1
+#
+	dir=`dirname $file`
+	dir=`(cd $dir; /bin/pwd)`
+ 	file=`basename $file`
+#
+# Try up to 8 links
+#
+    	while [ $n -le 8 ]
+    	do
+	    (cd $dir) >/dev/null 2>&1
+	    if [ $? -eq 0 ]; then
+	        lscmd=`(cd $dir; ls -l $file 2>/dev/null)`
+#
+# Check for link portably
+#
+                if [ `expr "//$lscmd" : '//.*->.*'` -ne 0 ]; then
+                    link=`echo "$lscmd" | awk '{ print $NF }'`
+		    dirnext=`dirname $link`
+		    dir=`(cd $dir; cd $dirnext; /bin/pwd)`
+		    file=`basename $link`
+                elif [ "$lscmd" != "" ]; then
+	            echo `(cd $dir; /bin/pwd)`/$file
+	            return 0
+	        else
+		    return 1
+	        fi
+	    else
+		return 1
+	    fi
+	    n=`expr $n + 1`
+        done
+	return 1
+    }
+#
+#=======================================================================
+    matlab6_arch () { # Determine the architecture for MATLAB 6.x
+		      # It returns the value in the ARCH variable.
+		      # If 'unknown' is returned then sometimes a
+		      # diagnostic message is returned in ARCH_MSG.
+                      #
+                      # Always returns a 0 status.
+                      #
+                      # usage: matlab6_arch
+                      #
+	ARCH="unknown"
+#
+	if [ -f /bin/uname ]; then
+   	    case "`/bin/uname`" in
+	        SunOS)					# sol2
+	            if [ -d /dev/pts ]; then
+		        ARCH="sol2"
+	            fi
+	            ;;
+	        HP-UX)					# hp 700 & 800
+		    majorversion=`/bin/uname -r | awk '
+#-----------------------------------------------------------------------
+			{ split(substr($1,3),a,"."); print a[1] }'`
+#-----------------------------------------------------------------------
+	            if [ -f /bin/hp9000s700 ]; then
+		        (/bin/hp9000s700) > /dev/null 2>&1
+		        if [ $? -eq 0 ]; then
+			    if [ $majorversion -lt 11 ]; then
+	    	                ARCH="hp700"
+			    else
+				ARCH="hpux"
+			    fi
+		        fi
+	            fi
+	            if [ -f /bin/hp9000s800 ]; then
+		        (/bin/hp9000s800) > /dev/null 2>&1
+		        if [ $? -eq 0 ]; then
+			    if [ $majorversion -lt 11 ]; then
+	    	                ARCH="hp700"
+			    else
+				ARCH="hpux"
+			    fi
+		        fi
+	            fi
+	            ;;
+	        IRIX|IRIX64)				# sgi
+    	            if [ -f /bin/4d ]; then
+		        (/bin/4d) > /dev/null 2>&1
+		        if [ $? -eq 0 ]; then
+		            if [ -f /bin/hinv ]; then
+			        ARCH_MSG=`/bin/hinv | awk '
+#-----------------------------------------------------------------------
+# If we want -mips4 -n32. Must be cpu >= 5000
+# If we want -mips3 -n32. Must be cpu >= 4000
+#
+	$1 == "CPU:" { cpu = substr($3,2) + 0
+		       if (cpu < 5000)
+#-----------------------------------------------------------------------
+print "Appears to be sgi: But processor must be at least a R5000 ..."
+#-----------------------------------------------------------------------
+		     }'`
+#-----------------------------------------------------------------------
+			        if [ "$ARCH_MSG" = "" ]; then
+			            ARCH=sgi
+			        fi
+			    else
+#-----------------------------------------------------------------------
+ARCH_MSG='Appears to be sgi: But processor could not be determined ...'
+#-----------------------------------------------------------------------
+			    fi
+			fi
+		    fi
+	            ;;
+	        OSF1)					# alpha
+	    	    ARCH="alpha"
+	            ;;
+	        AIX*)					# ibm_rs
+#
+# With AIX 4.1, uname can return more than just 'AIX'
+#
+	            ARCH="ibm_rs"
+	            ;;
+	        Linux)
+		    case "`/bin/uname -m`" in
+		    i*86)
+			ARCH="glnx86"
+			;;
+		    ia64)
+			ARCH="glnxi64"
+			;;
+		    x86_64)
+			ARCH="glnxa64"
+			;;
+		    esac
+		    ;;
+# Usually uname lives in /usr/bin on the Mac, but sometimes people 
+# have links in /bin that link uname to /usr/bin.  Because of this
+# Mac needs to be listed in the checks for both /bin/uname and /usr/bin/uname
+	        Darwin)					# Mac OS X
+                    ARCH="mac"
+                    ;;
+	        *)
+		    :
+	            ;;
+	    esac
+	elif [ -f /usr/bin/uname ]; then
+   	    case "`/usr/bin/uname`" in
+	        Darwin)					# Mac OS X
+                    ARCH="mac"
+                    ;;
+            esac
+        fi
+	return 0
+    }
+#=======================================================================
+#
+# The local shell function check_archlist is assume to be loaded before this
+# function is sourced.
+#
+    ARCH_MSG=''
+    check_archlist ARCH=$ARCH
+    if [ "$ARCH" = "" ]; then
+	if [ "$MATLAB_ARCH" != "" ]; then
+	    check_archlist MATLAB_ARCH=$MATLAB_ARCH
+	fi
+	if [ "$ARCH" = "" ]; then
+	    matlab6_arch
+	fi
+    fi
+    Arch=$ARCH
+#========================= arch.sh (end) ==============================
+#
+    case "$ARCH" in
+	hpux)
+	    cmd=/usr/bin/chatr
+	    mancmd=chatr
+	    options=
+	    ;;
+	glnx86)
+	    cmd=/usr/bin/ldd
+	    mancmd=ldd
+	    options=
+	    ;;
+	glnxi64)
+	    cmd=/usr/bin/ldd
+	    mancmd=ldd
+	    options=
+	    ;;
+        mac)
+	    cmd=/usr/bin/otool
+	    mancmd=otool
+	    options=-L
+	    ;;
+	*)
+	    cmd=/usr/bin/ldd
+	    mancmd=ldd
+	    options=
+	    ;;
+    esac
+#
+    if [ "$stat" = "" ]; then
+	if [ "$man" != "0" ]; then 
+	   man $mancmd
+	   exit 1
+	fi
+        if [ "$msg" != "" ]; then
+#-----------------------------------------------------------------------
+    echo " "
+    echo "    Error: $msg"
+    echo " "
+#-----------------------------------------------------------------------
+        fi
+#------------------------------------------------------------------------------
+    echo "-----------------------------------------------------------------"
+    echo " "
+    echo "    usage: ldd [-h|-help] | -man | [-arch] [options]"
+    echo "                                       program [ . . . ]"
+    echo " "
+    echo "    -h|-help        - Print Usage."	
+    echo "    -man            - View manual page for command used."
+    echo "    -arch           - Assume local host has architecture arch."
+    echo "    options         - Platform specific options. See the"
+    echo "                      manual page for details."
+    echo "    program         - Program to search."
+    echo " "
+    echo "    DEFAULT: executes '$cmd $options [options] program [ . . . ]'"
+    echo " "
+    echo "    Show shared libraries used by a program. You can also"
+    echo "    view the manual page for the command used."
+    echo " "
+    echo "-----------------------------------------------------------------"
+#------------------------------------------------------------------------------
+	exit 1
+    fi
+#
+    $cmd $options $*
+    exit $?

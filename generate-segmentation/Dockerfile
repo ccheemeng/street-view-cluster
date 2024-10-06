@@ -5,8 +5,7 @@ COPY libxp6_1.0.2-2ubuntu1~18.04_i386.deb ./
 COPY graph-segmentation ./graph-segmentation/
 COPY ImageMagick.tar.gz ./
 COPY app.zip ./
-COPY MCRInstaller.zip.aa ./
-COPY MCRInstaller.zip.ab ./
+COPY v73 ./
 COPY requirements.txt ./
 RUN cat MCRInstaller.zip.aa MCRInstaller.zip.ab > MCRInstaller.zip && rm MCRInstaller.zip.aa && rm MCRInstaller.zip.ab
 
@@ -24,7 +23,6 @@ RUN ./configure && make && make install
 
 WORKDIR /app
 RUN unzip app.zip
-RUN unzip MCRInstaller.zip
 WORKDIR /app/app
 RUN mkdir -p input && mkdir -p output
 
