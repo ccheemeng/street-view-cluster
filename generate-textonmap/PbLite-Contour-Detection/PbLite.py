@@ -381,7 +381,7 @@ def PbLite(ImageName):
 	Display texton map and save image as TextonMap_ImageName.png,
 	use command "cv2.imwrite('...)"
 	"""
-    TextonName = 'TextonMap_' + ImageName + '.png'
+    TextonName = ImageName + '.png'
     TextonMap = TextonMap.reshape(ColorImageShape[0], ColorImageShape[1])
     # print(TextonMap.shape)
     plt.imsave(os.path.join(ResultsPath, TextonName), TextonMap, cmap='jet')
