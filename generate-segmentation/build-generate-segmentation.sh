@@ -1,0 +1,1 @@
+docker build -t generate-segmentation ./generate-segmentation
