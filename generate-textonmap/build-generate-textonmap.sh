@@ -1,0 +1,1 @@
+docker build -t generate-textonmap ./generate-textonmap

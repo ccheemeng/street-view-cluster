@@ -1,0 +1,1 @@
+docker build -t generate-gist ./generate-gist/

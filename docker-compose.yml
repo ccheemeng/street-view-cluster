@@ -17,4 +17,31 @@ services:
     ports:
       - "8001:8001"
     volumes:
-      - ./data:/app/data  
+      - ./data:/app/data
+
+  find-site-panos:
+    build:
+      context: ./find-site-panos
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./data:/app/data
+
+  generate-gist:
+    build:
+      context: ./generate-gist
+      dockerfile: Dockerfile
+    ports:
+      - "8003:8003"
+    volumes:
+      - ./data:/app/data
+
+  generate-textonmap:
+    build:
+      context: ./generate-textonmap
+      dockerfile: Dockerfile
+    ports:
+      - "8004:8004"
+    volumes:
+      - ./data:/app/data

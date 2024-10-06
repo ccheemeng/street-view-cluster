@@ -1,1 +1,1 @@
-docker build -t util ./util/Dockerfile
+docker build -t util ./util/

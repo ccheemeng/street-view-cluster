@@ -1,0 +1,1 @@
+docker run -p 8004:8004 -v "$(pwd)/data:/app/data" find-site-panos
