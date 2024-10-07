@@ -1,0 +1,1 @@
+docker build -t cluster-data ./cluster-data

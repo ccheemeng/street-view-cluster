@@ -1,0 +1,1 @@
+docker run -p 8009:8009 -v "$(pwd)/data:/app/data" cluster-data

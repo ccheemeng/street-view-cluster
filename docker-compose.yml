@@ -81,3 +81,12 @@ services:
       - "8008:8008"
     volumes:
       - ./data:/app/data
+
+  cluster-data:
+    build:
+      context: ./cluster-data
+      dockerfile: Dockerfile
+    ports:
+      - "8009:8009"
+    volumes:
+      - ./data:/app/data
