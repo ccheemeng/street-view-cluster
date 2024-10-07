@@ -7,7 +7,6 @@ COPY ImageMagick.tar.gz ./
 COPY app.zip ./
 COPY v73 ./
 COPY requirements.txt ./
-RUN cat MCRInstaller.zip.aa MCRInstaller.zip.ab > MCRInstaller.zip && rm MCRInstaller.zip.aa && rm MCRInstaller.zip.ab
 
 RUN dpkg --add-architecture i386 && apt-get update
 RUN apt-get install -y libc6-i386 && apt-get install -y libxext6:i386 && dpkg -i libxp6_1.0.2-2ubuntu1~18.04_i386.deb && apt-get install -y libxt6:i386
