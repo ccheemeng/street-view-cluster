@@ -54,3 +54,30 @@ services:
       - "8005:8005"
     volumes:
       - ./data:/app/data
+
+  encode-panos:
+    build:
+      context: ./encode-panos
+      dockerfile: Dockerfile
+    ports:
+      - "8006:8006"
+    volumes:
+      - ./data:/app/data
+
+  encode-images:
+    build:
+      context: ./encode-images
+      dockerfile: Dockerfile
+    ports:
+      - "8007:8007"
+    volumes:
+      - ./data:/app/data
+
+  encode-point-clouds-cpu:
+    build:
+      context: ./encode-point-clouds-cpu
+      dockerfile: Dockerfile
+    ports:
+      - "8008:8008"
+    volumes:
+      - ./data:/app/data

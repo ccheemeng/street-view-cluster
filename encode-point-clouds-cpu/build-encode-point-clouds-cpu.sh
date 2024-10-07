@@ -1,0 +1,1 @@
+docker build -t encode-point-clouds-cpu ./encode-point-clouds-cpu

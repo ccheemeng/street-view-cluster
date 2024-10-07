@@ -1,0 +1,1 @@
+docker build -t encode-images ./encode-images
