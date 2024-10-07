@@ -1,4 +1,5 @@
 fpsample==0.3.3
 numpy==2.1.2
 pandas==2.2.3
+pillow==10.4.0
 jupyter==1.1.1
