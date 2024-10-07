@@ -90,3 +90,12 @@ services:
       - "8009:8009"
     volumes:
       - ./data:/app/data
+
+  train-svr:
+    build:
+      context: ./train-svr
+      dockerfile: Dockerfile
+    ports:
+      - "8010:8010"
+    volumes:
+      - ./data:/app/data
