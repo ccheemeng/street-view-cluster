@@ -100,9 +100,9 @@ services:
     volumes:
       - ./data:/app/data
 
-  segment-images:
+  segment-images-cpu:
     build:
-      context: ./segment-images
+      context: ./segment-images-cpu
       dockerfile: Dockerfile
     ports:
       - "8011:8011"
