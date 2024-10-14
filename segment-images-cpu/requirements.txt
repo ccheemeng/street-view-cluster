@@ -1,2 +1,5 @@
+ftfy==6.3.0
 jupyter==1.1.1
-mmsegmentation==1.2.2 
+opencv-python-headless==4.10.0.84
+mmsegmentation==1.2.2
+regex==2024.9.11 
