@@ -1,0 +1,1 @@
+docker run -p 8011:8011 -v "$(pwd)/data:/app/data" segment-images-cpu

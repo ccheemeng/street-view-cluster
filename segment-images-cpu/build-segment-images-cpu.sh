@@ -1,0 +1,1 @@
+docker build -t segment-images-cpu ./segment-images-cpu

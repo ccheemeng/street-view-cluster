@@ -99,3 +99,12 @@ services:
       - "8010:8010"
     volumes:
       - ./data:/app/data
+
+  segment-images:
+    build:
+      context: ./segment-images
+      dockerfile: Dockerfile
+    ports:
+      - "8011:8011"
+    volumes:
+      - ./data:/app/data
