@@ -108,3 +108,12 @@ services:
       - "8011:8011"
     volumes:
       - ./data:/app/data
+
+  depth-segment-images-cpu:
+    build:
+      context: ./depth-segment-images-cpu
+      dockerfile: Dockerfile
+    ports:
+      - "8012:8012"
+    volumes:
+      - ./data:/app/data

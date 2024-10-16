@@ -1,0 +1,1 @@
+docker build -t depth-segment-images-cpu ./depth-segment-images-cpu

@@ -1,0 +1,5 @@
+jupyter==1.1.1
+matplotlib==3.9.2
+open3d==0.18.0
+opencv-python-headless==4.10.0.84
+seaborn==0.13.2
