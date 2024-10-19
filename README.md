@@ -23,7 +23,7 @@ This is a working collection of a series of pipelines for working with image and
 To use the pipeline described by one notebook, build and run its respective Docker image. For example, to use the pipelines in [util.ipynb](/notebooks/util.ipynb):  
 ```shell  
 sh ./util/build-util.sh  
-sh ./util/run-util/sh  
+sh ./util/run-util.sh  
 ```  
 
 To build all Docker images, use Docker Compose:  
