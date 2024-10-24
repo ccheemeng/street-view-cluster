@@ -8,12 +8,11 @@ COPY app.zip ./
 COPY v73 ./
 COPY requirements.txt ./
 
-RUN dpkg --add-architecture i386 && apt-get update
-RUN apt-get install -y libc6-i386 && apt-get install -y libxext6:i386 && dpkg -i libxp6_1.0.2-2ubuntu1~18.04_i386.deb && apt-get install -y libxt6:i386
+RUN dpkg --add-architecture i386 && apt-get update &&\
+    apt-get install -y libc6-i386 && apt-get install -y libxext6:i386 && dpkg -i libxp6_1.0.2-2ubuntu1~18.04_i386.deb && apt-get install -y libxt6:i386
 
 WORKDIR /app/graph-segmentation
-RUN mkdir -p input && mkdir -p output
-RUN make
+RUN mkdir -p input && mkdir -p output && make
 
 WORKDIR /app
 RUN tar -xzf ImageMagick.tar.gz

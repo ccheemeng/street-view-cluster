@@ -2,12 +2,12 @@ FROM python:3.11.10-bookworm
 WORKDIR /app
 
 COPY requirements.txt ./
-RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu && pip install -r requirements.txt
-RUN apt-get update && apt-get install -y python3-ipykernel
+RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu && pip install --no-cache-dir -r requirements.txt &&\
+    apt-get update && apt-get install -y python3-ipykernel
 
-RUN wget https://huggingface.co/depth-anything/Depth-Anything-V2-Metric-VKITTI-Large/resolve/main/depth_anything_v2_metric_vkitti_vitl.pth
-RUN git clone https://github.com/DepthAnything/Depth-Anything-V2
-RUN cp -a ./Depth-Anything-V2/metric_depth/. ./
+RUN wget https://huggingface.co/depth-anything/Depth-Anything-V2-Metric-VKITTI-Large/resolve/main/depth_anything_v2_metric_vkitti_vitl.pth &&\
+    git clone https://github.com/DepthAnything/Depth-Anything-V2 &&\
+    cp -a ./Depth-Anything-V2/metric_depth/. ./
 
 EXPOSE 8012
 

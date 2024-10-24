@@ -4,8 +4,8 @@ WORKDIR /app
 COPY requirements.txt ./
 COPY geo/ ./geo/
 COPY streetview/ ./streetview/
-RUN pip install --no-cache-dir -r requirements.txt
-RUN apt-get update && apt-get install -y python3-ipykernel
+RUN pip install --no-cache-dir -r requirements.txt &&\
+    apt-get update && apt-get install -y python3-ipykernel
 
 EXPOSE 8002
 

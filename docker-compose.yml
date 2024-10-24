@@ -117,3 +117,12 @@ services:
       - "8012:8012"
     volumes:
       - ./data:/app/data
+
+  encode-segmented-point-clouds-cpu:
+    build:
+      context: ./encode-segmented-point-clouds-cpu
+      dockerfile: Dockerfile
+    ports:
+      - "8013:8013"
+    volumes:
+      - ./data:/app/data

@@ -7,10 +7,10 @@ COPY requirements.txt ./
 COPY fftw-3.3.10.tar.gz ./
 COPY lear-gist-python/ ./lear-gist-python/
 
-RUN pip install --no-cache-dir -r requirements.txt
-RUN apt-get update && apt-get install -y python3-ipykernel
+RUN pip install --no-cache-dir -r requirements.txt &&\
+    apt-get update && apt-get install -y python3-ipykernel &&\
 
-RUN tar -xzf fftw-3.3.10.tar.gz
+    tar -xzf fftw-3.3.10.tar.gz
 WORKDIR /app/fftw-3.3.10
 RUN ./configure --enable-single --enable-shared && make && make install
 WORKDIR /app/lear-gist-python

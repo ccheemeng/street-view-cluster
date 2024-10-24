@@ -1,0 +1,1 @@
+docker run -p 8013:8013 -v "$(pwd)/data:/app/data" encode-segmented-point-clouds-cpu
