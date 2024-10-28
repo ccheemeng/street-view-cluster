@@ -1,5 +1,6 @@
-gdown==3.3.1
 jupyter==1.1.1
-numpy==2.1.2
+matplotlib==3.8.4
+numpy==1.22.4
+PyQt5==5.15.11
 PyYAML==6.0.2
 scikit-learn==1.5.2

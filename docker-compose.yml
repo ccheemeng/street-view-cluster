@@ -126,3 +126,4 @@ services:
       - "8013:8013"
     volumes:
       - ./data:/app/data
+    ipc: "host"
