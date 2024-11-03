@@ -5,11 +5,12 @@ COPY libxp6_1.0.2-2ubuntu1~18.04_i386.deb ./
 COPY graph-segmentation ./graph-segmentation/
 COPY ImageMagick.tar.gz ./
 COPY app.zip ./
-COPY v73 ./
+COPY v73 ./v73/
 COPY requirements.txt ./
 
 RUN dpkg --add-architecture i386 && apt-get update &&\
-    apt-get install -y libc6-i386 && apt-get install -y libxext6:i386 && dpkg -i libxp6_1.0.2-2ubuntu1~18.04_i386.deb && apt-get install -y libxt6:i386
+    apt-get install -y libc6-i386 && apt-get install -y libxext6:i386 && dpkg -i libxp6_1.0.2-2ubuntu1~18.04_i386.deb && apt-get install -y libxt6:i386 &&\
+    pip install --no-cache-dir -r requirements.txt
 
 WORKDIR /app/graph-segmentation
 RUN mkdir -p input && mkdir -p output && make
@@ -26,10 +27,8 @@ RUN mkdir -p input && mkdir -p output
 
 WORKDIR /app
 
-ENV LD_LIBRARY_PATH="/usr/local/lib:/app/v73/runtime/glnx86:/app/v73/sys/os/glnx86:/app/v73/sys/java/jre/glnx86/jre1.5.0/lib/i386/native_threads:/app/v73/sys/java/jre/glnx86/jre1.5.0/lib/i386/client:/app/v73/sys/java/jre/glnx86/jre1.5.0/lib/i386:/app/v73/bin/glnx86:"
+ENV LD_LIBRARY_PATH="/usr/local/lib:/app/v73/runtime/glnx86:/app/v73/sys/os/glnx86:/app/v73/sys/java/jre/glnx86/jre1.5.0/lib/i386/native_threads:/app/v73/sys/java/jre/glnx86/jre1.5.0/lib/i386/client:/app/v73/sys/java/jre/glnx86/jre1.5.0/lib/i386:/app/v73/bin/glnx86"
 ENV XAPPLRESDIR="/app/v73/X11/app-defaults"
-
-RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 8005
 
