@@ -136,3 +136,12 @@ services:
       - "8014:8014"
     volumes:
       - ./data:/app/data
+
+  sketchbook:
+    build:
+      context: ./sketchbook
+      dockerfile: Dockerfile
+    ports:
+      - "8015:8015"
+    volumes:
+      - ./data:/app/data
