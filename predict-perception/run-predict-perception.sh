@@ -1,0 +1,1 @@
+docker run -p 8014:8014 -v "$(pwd)/data:/app/data" predict-perception

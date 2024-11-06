@@ -127,3 +127,12 @@ services:
     volumes:
       - ./data:/app/data
     ipc: "host"
+
+  predict-perception:
+    build:
+      context: ./predict-perception
+      dockerfile: Dockerfile
+    ports:
+      - "8014:8014"
+    volumes:
+      - ./data:/app/data
