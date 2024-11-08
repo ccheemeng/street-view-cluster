@@ -1,1 +1,1 @@
-docker run -p 8000:8000 -v "$(pwd)/data:/app/data" util
+docker run -d -p 8000:8000 -v "$(pwd)/data:/app/data" util

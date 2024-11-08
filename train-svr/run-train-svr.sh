@@ -1,1 +1,1 @@
-docker run -p 8010:8010 -v "$(pwd)/data:/app/data" train-svr
+docker run -d -p 8010:8010 -v "$(pwd)/data:/app/data" train-svr

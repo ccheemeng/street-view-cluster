@@ -1,1 +1,1 @@
-docker run -p 8012:8012 -v "$(pwd)/data:/app/data" depth-segment-images-cpu
+docker run -d -p 8012:8012 -v "$(pwd)/data:/app/data" depth-segment-images-cpu

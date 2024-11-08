@@ -1,0 +1,1 @@
+docker build -t segment-images-cuda121 ./segment-images-cuda121

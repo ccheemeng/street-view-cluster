@@ -1,1 +1,1 @@
-docker run -p 8003:8003 -v "$(pwd)/data:/app/data" generate-gist
+docker run -d -p 8003:8003 -v "$(pwd)/data:/app/data" generate-gist

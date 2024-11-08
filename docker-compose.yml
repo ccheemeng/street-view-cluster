@@ -146,3 +146,51 @@ services:
     volumes:
       - ./data:/app/data
     ipc: "host"
+
+  encode-point-clouds-cuda121:
+    build:
+      context: ./encode-point-clouds-cuda121
+      dockerfile: Dockerfile
+    ports:
+      - "8016:8016"
+    volumes:
+      - ./data:/app/data
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  segment-images-cuda121:
+    build:
+      context: ./segment-images-cuda121
+      dockerfile: Dockerfile
+    ports:
+      - "8017:8017"
+    volumes:
+      - ./data:/app/data
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  depth-segment-images-cuda121:
+    build:
+      context: ./depth-segment-images-cuda121
+      dockerfile: Dockerfile
+    ports:
+      - "8018:8018"
+    volumes:
+      - ./data:/app/data
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]

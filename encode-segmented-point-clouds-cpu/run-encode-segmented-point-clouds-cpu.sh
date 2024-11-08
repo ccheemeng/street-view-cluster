@@ -1,1 +1,1 @@
-docker run --ipc=host -p 8013:8013 -v "$(pwd)/data:/app/data" encode-segmented-point-clouds-cpu
+docker run --ipc=host -d -p 8013:8013 -v "$(pwd)/data:/app/data" encode-segmented-point-clouds-cpu

@@ -1,0 +1,1 @@
+docker build -t depth-segment-images-cuda121 ./depth-segment-images-cuda121

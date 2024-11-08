@@ -1,1 +1,1 @@
-docker run -p 8001:8001 -v "$(pwd)/data:/app/data" collect-street-view
+docker run -d -p 8001:8001 -v "$(pwd)/data:/app/data" collect-street-view

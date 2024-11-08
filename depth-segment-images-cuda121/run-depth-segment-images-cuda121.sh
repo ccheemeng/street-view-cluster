@@ -1,0 +1,1 @@
+docker run -d -p 8018:8018 -v "$(pwd)/data:/app/data" --gpus=all depth-segment-images-cuda121

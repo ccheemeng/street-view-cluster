@@ -1,1 +1,1 @@
-docker run -p 8008:8008 -v "$(pwd)/data:/app/data" encode-point-clouds-cpu
+docker run -d -p 8008:8008 -v "$(pwd)/data:/app/data" encode-point-clouds-cpu

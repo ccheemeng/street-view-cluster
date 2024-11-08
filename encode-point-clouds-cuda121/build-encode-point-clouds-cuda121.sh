@@ -1,0 +1,1 @@
+docker build -t encode-point-clouds-cuda121 ./encode-point-clouds-cuda121

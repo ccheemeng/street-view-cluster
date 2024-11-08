@@ -1,1 +1,1 @@
-docker run -p 8007:8007 -v "$(pwd)/data:/app/data" encode-images
+docker run -d -p 8007:8007 -v "$(pwd)/data:/app/data" encode-images

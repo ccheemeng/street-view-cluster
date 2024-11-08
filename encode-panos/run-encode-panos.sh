@@ -1,1 +1,1 @@
-docker run -p 8006:8006 -v "$(pwd)/data:/app/data" encode-panos
+docker run -d -p 8006:8006 -v "$(pwd)/data:/app/data" encode-panos
