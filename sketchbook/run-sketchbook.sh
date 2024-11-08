@@ -1,1 +1,1 @@
-docker run -p 8015:8015 -v "$(pwd)/data:/app/data" sketchbook
+docker run --ipc=host -p 8015:8015 -v "$(pwd)/data:/app/data" sketchbook

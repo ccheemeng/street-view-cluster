@@ -145,3 +145,4 @@ services:
       - "8015:8015"
     volumes:
       - ./data:/app/data
+    ipc: "host"
