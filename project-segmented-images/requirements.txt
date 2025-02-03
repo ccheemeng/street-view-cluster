@@ -1,0 +1,4 @@
+fpsample==0.3.3
+jupyter==1.1.1
+meshlib==3.0.2.183
+pyproj==3.7.0

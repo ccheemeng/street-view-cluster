@@ -1,1 +1,1 @@
-docker run -d p 8004:8004 -v "$(pwd)/data:/app/data" generate-textonmap
+docker run -d -p 8004:8004 -v "$(pwd)/data:/app/data" generate-textonmap

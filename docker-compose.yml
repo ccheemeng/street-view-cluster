@@ -194,3 +194,12 @@ services:
             - driver: nvidia
               count: all
               capabilities: [gpu]
+
+  project-segmented-images:
+    build:
+      context: ./project-segmented-images
+      dockerfile: Dockerfile
+    ports:
+      - "8019:8019"
+    volumes:
+      - ./data:/app/data

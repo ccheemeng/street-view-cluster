@@ -1,0 +1,1 @@
+docker run -d -p 8019:8019 -v "$(pwd)/data:/app/data" project-segmented-images
